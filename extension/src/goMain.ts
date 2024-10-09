@@ -74,6 +74,7 @@ import * as commands from './commands';
 import { toggleVulncheckCommandFactory } from './goVulncheck';
 import { GoTaskProvider } from './goTaskProvider';
 import { setTelemetryEnvVars, telemetryReporter } from './goTelemetry';
+import { GoCodeLensProvider } from './goCodeLens';
 import { experiments } from './experimental';
 import { allToolsInformation } from './goToolsInformation';
 
@@ -147,6 +148,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<ExtensionA
 	registerCommand('go.builds.run', commands.runBuilds);
 	registerCommand('go.environment.status', expandGoStatusBar);
 
+	GoCodeLensProvider.activate(ctx, goCtx);
 	GoRunTestCodeLensProvider.activate(ctx, goCtx);
 	GoDebugConfigurationProvider.activate(ctx, goCtx);
 	GoDebugFactory.activate(ctx, goCtx);
